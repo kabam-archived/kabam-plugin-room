@@ -48,7 +48,7 @@ This route can update room parameters (name, motd) if user have enought rights
 
 DELETE /api/rooms/:roomName
 ========================
-If current user have enought rights (have permission of `roomCreator`, for example), this route creates destroys
+If current user have enough rights (have permission of `roomCreator`, for example), this route creates destroys
 this room
 
 
