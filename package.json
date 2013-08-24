@@ -1,0 +1,25 @@
+{
+  "name": "kabam-plugin-room",
+  "version": "0.0.1",
+  "description": "Kabam plugin for chat/discussions room",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mykabam/kabam-plugin-room.git"
+  },
+  "keywords": [
+    "kabam",
+    "plugin.",
+    "room",
+    "comments.",
+    "subsribe"
+  ],
+  "author": "Anatolij Ostroumov",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mykabam/kabam-plugin-room/issues"
+  }
+}
