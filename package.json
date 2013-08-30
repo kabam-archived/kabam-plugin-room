@@ -17,6 +17,9 @@
     "comments.",
     "subsribe"
   ],
+  "dependencies":{
+    "slugify2":"*"
+  },
   "author": "Anatolij Ostroumov",
   "license": "MIT",
   "bugs": {
