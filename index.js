@@ -58,6 +58,7 @@ exports.extendModel({
     }]
   });
 
+  GroupsSchema..index({ name:1, uri:1, parent:1 });
   GroupsSchema.methods.inviteAdmin = function(usernameOrEmailOrUserObject){};
   GroupsSchema.methods.removeAdmin = function(usernameOrEmailOrUserObject){};
 
