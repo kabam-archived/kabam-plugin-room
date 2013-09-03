@@ -18,6 +18,7 @@
     "subsribe"
   ],
   "dependencies":{
+    "async":"*",
     "slugify2":"*"
   },
   "author": "Anatolij Ostroumov",
