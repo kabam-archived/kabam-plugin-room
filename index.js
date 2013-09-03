@@ -75,25 +75,55 @@ exports.extendModel({
           }
         });
       } else {
-        return = 'visitor';
+        role = 'visitor';
       }
     }
     return role;
   };
 
-  GroupsSchema.methods.checkRights(usernameOrEmailOrUserObject,cb){
+  GroupsSchema.methods.checkRights(usernameOrEmailOrUserObject,callback){
+    var thisGroup = this;
     async.parallel({
-      'admin':function(cb){},
-      'member':function(cb){}
-    },cb);
+      'inSchool':function(cb){
+        if(this.school_id){
+          Groups.findOne({'_id':this.school_id},function(err, schoolFound){
+            cb(err, schoolFound.findRoleInThisGroup(usernameOrEmailOrUserObject));
+          });
+        } else {
+          cb(null);
+        }
+      },
+      'inCourse':function(cb){
+        if(this.course_id){
+          Groups.findOne({'_id':this.course_id},function(err, courseFound){
+            cb(err, courseFound.findRoleInThisGroup(usernameOrEmailOrUserObject));
+          });
+        } else {
+          cb(null);
+        }
+      },
+      'inThisGroup':function(cb){
+        cb(null,thisGroup.findRoleInThisGroup(usernameOrEmailOrUserObject));
+      }
+    }, callback);
   };
 
-  GroupsSchema.methods.invite(usernameOrEmailOrUserObject,role, cb){}
+  GroupsSchema.methods.invite  = function(usernameOrEmailOrUserObject, role, callback){
+    //todo
+  };
 
-  GroupsSchema.methods.inviteAdmin = function(usernameOrEmailOrUserObject){};
+  GroupsSchema.methods.inviteAdmin = function(usernameOrEmailOrUserObject,callback){
+    this.invite(usernameOrEmailOrUserObject, 'admin', callback);
+  };
 
-  GroupsSchema.methods.inviteUser = function(usernameOrEmailOrUserObject){};
-  GroupsSchema.methods.sendMessage = function(usernameOrEmailOrUserObject, message){};
+  GroupsSchema.methods.inviteMember = function(usernameOrEmailOrUserObject, callback){
+    this.invite(usernameOrEmailOrUserObject, 'member', callback);
+  };
 
-  return kabam.mongoConnection.model('groups', GroupsSchema);
+  GroupsSchema.methods.sendMessage = function(usernameOrEmailOrUserObject, message){
+
+  };
+
+  var Groups = kabam.mongoConnection.model('groups', GroupsSchema);
+  return Groups;
 }});
