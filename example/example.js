@@ -1,7 +1,7 @@
 var Kabam = require('kabam-kernel');
 
 var kabam = Kabam({
-  'hostUrl':'http://vvv.msk0.ru'
+  'hostUrl':'http://vvv.msk0.ru/'
 });
 
 //basic frontend
