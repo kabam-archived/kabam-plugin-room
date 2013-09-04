@@ -134,10 +134,13 @@ exports.model={
     this.invite(usernameOrEmailOrUserObject, 'member', callback);
   };
 
-  GroupsSchema.methods.sendMessage = function(usernameOrEmailOrUserObject, message){
+  GroupsSchema.methods.sendMessage = function(usernameOrEmailOrUserObject, message,callback){
 
   };
 
+  GroupsSchema.statics.findGroup = function(schoolUri, courseUri, groupUri , callback){
+
+  };
   var Groups = kabam.mongoConnection.model('groups', GroupsSchema);
   return Groups;
 }};
@@ -145,8 +148,8 @@ exports.model={
 
 
 exports.routes = function(kabam){
-  //get group homepage
 
+  //get group homepage
   kabam.app.get(/\/h\/([a-z0-9_]+)\/?$/,function(request,response){
     response.send('tier1 group '+request.params[0]);
   });
@@ -185,5 +188,30 @@ exports.routes = function(kabam){
     response.send('tier3 group blog '+request.params[0]+' '+request.params[1]+' '+request.params[2]);
   });
 
+  //update group parameters (homepage text)
+  kabam.app.put(/\/h\/([a-z0-9_]+)$/,function(request,response){
+    response.send('tier1 group blog '+request.params[0]);
+  });
+
+  kabam.app.put(/\/h\/([a-z0-9_]+)\/([a-z0-9_]+)$/,function(request,response){
+    response.send('tier2 group blog '+request.params[0]+' '+request.params[1]);
+  });
+
+  kabam.app.put(/\/h\/([a-z0-9_]+)\/([a-z0-9_]+)\/([a-z0-9_]+)$/,function(request,response){
+    response.send('tier3 group blog '+request.params[0]+' '+request.params[1]+' '+request.params[2]);
+  });
+
+  //make plog post
+  kabam.app.post(/\/h\/([a-z0-9_]+)\/blog$/,function(request,response){
+    response.send('tier1 group blog '+request.params[0]);
+  });
+
+  kabam.app.post(/\/h\/([a-z0-9_]+)\/([a-z0-9_]+)\/blog$/,function(request,response){
+    response.send('tier2 group blog '+request.params[0]+' '+request.params[1]);
+  });
+
+  kabam.app.post(/\/h\/([a-z0-9_]+)\/([a-z0-9_]+)\/([a-z0-9_]+)\/blog$/,function(request,response){
+    response.send('tier3 group blog '+request.params[0]+' '+request.params[1]+' '+request.params[2]);
+  });
 
 };
