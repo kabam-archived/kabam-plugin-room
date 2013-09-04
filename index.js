@@ -4,23 +4,37 @@ var slugify = require('slugify'),
 exports.name = "kabamPluginRoom";
 
 exports.extendModel({
-'groupMessages': function(kernel){
+'groupBlogs': function(kabam){
+  var GroupBlogsSchema = new kabam.mongoose.Schema({
+    'groupId': kabam.mongoose.Schema.Types.ObjectId,
+    'title': String,
+    'description':String,
+    'keywords':String,
+    'contentPublic':String,
+    'contentForMembers':String,
+    'createdAt': {type: Date, default: new Date()}
+  });
+  GroupBlogsSchema.index({ groupId:1, createdAt:1});
+  return kabam.mongoConnection.model('groupBlogs', GroupBlogsSchema);
+},
+'groupMessages': function(kabam){
   var GroupMessagesSchema = new kabam.mongoose.Schema({
-    'groupId': mongoose.Schema.Types.ObjectId,
-    'userId': mongoose.Schema.Types.ObjectId,
+    'groupId': kabam.mongoose.Schema.Types.ObjectId,
+    'userId': kabam.mongoose.Schema.Types.ObjectId,
     'message': String,
     'user':{
       'username': String,
       'firstName': String,
       'lastName': String,
-      'gravatar': String,
+      'gravatar': String
     },
-    'createdAt': Date
+    'createdAt': {type: Date, default: new Date()}
   });
 
+  GroupMessagesSchema.index({ groupId:1, createdAt:1});
   return kabam.mongoConnection.model('groupMessages', GroupMessagesSchema);
 },
-'groups': function(kernel){
+'groups': function(kabam){
   var GroupsSchema = new kabam.mongoose.Schema({
     'name': {
       type: String,
@@ -35,11 +49,11 @@ exports.extendModel({
         return slugify(this.name);
         }
     },
+    'tier': {type: Number, min:0, max:3},
 
+    'school_id': kabam.mongoose.Schema.Types.ObjectId,
 
-    'school_id': mongoose.Schema.Types.ObjectId,
-
-    'course_id': mongoose.Schema.Types.ObjectId,
+    'course_id': kabam.mongoose.Schema.Types.ObjectId,
 
     'descriptionPublic': String,
     'descriptionForMembers': String,
@@ -59,7 +73,7 @@ exports.extendModel({
 
   GroupsSchema.index({ name:1, uri:1, school_id:1, course_id:1 });
 
-  GroupsSchema.methods.findRoleInThisGroup(usernameOrEmailOrUserObject){
+  GroupsSchema.methods.findRoleInThisGroup=function(usernameOrEmailOrUserObject){
     var role = 'visitor';
     if(typeof usernameOrEmailOrUserObject === 'string'){
       this.members.map(function(member){
@@ -81,7 +95,7 @@ exports.extendModel({
     return role;
   };
 
-  GroupsSchema.methods.checkRights(usernameOrEmailOrUserObject,callback){
+  GroupsSchema.methods.checkRights=function(usernameOrEmailOrUserObject,callback){
     var thisGroup = this;
     async.parallel({
       'inSchool':function(cb){

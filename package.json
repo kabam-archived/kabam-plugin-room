@@ -21,6 +21,12 @@
     "async":"*",
     "slugify2":"*"
   },
+  "devDependencies":{
+    "kabam-kernel": "https://github.com/mykabam/kabam-kernel/tarball/master",
+    "kabam-plugin-hogan": "https://github.com/mykabam/kabam-plugin-hogan/tarball/master",
+    "kabam-plugin-geoip": "https://github.com/mykabam/kabam-plugin-geoip/tarball/master",
+    "kabam-plugin-welcome": "https://github.com/mykabam/kabam-plugin-welcome/tarball/master"
+  },
   "author": "Anatolij Ostroumov",
   "license": "MIT",
   "bugs": {
