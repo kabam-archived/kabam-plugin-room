@@ -3,7 +3,7 @@ var slugify = require('slugify2'),
 
 exports.name = "kabamPluginRoom";
 
-exports.extendModel={
+exports.model={
 'groupBlogs': function(kabam){
   var GroupBlogsSchema = new kabam.mongoose.Schema({
     'groupId': kabam.mongoose.Schema.Types.ObjectId,
@@ -59,7 +59,7 @@ exports.extendModel={
     'descriptionForMembers': String,
 
     'members':[{
-      '_id': mongoose.Schema.Types.ObjectId,
+      '_id': kabam.mongoose.Schema.Types.ObjectId,
       'username': String,
       'gravatar': String,
       'firstName': String,
@@ -141,3 +141,49 @@ exports.extendModel={
   var Groups = kabam.mongoConnection.model('groups', GroupsSchema);
   return Groups;
 }};
+
+
+
+exports.routes = function(kabam){
+  //get group homepage
+
+  kabam.app.get(/\/h\/([a-z0-9_]+)\/?$/,function(request,response){
+    response.send('tier1 group '+request.params[0]);
+  });
+
+  kabam.app.get(/\/h\/([a-z0-9_]+)\/([a-z0-9_]+)\/?$/,function(request,response){
+    response.send('tier2 group '+request.params[0]+' '+request.params[1]);
+  });
+
+  kabam.app.get(/\/h\/([a-z0-9_]+)\/([a-z0-9_]+)\/([a-z0-9_]+)\/?$/,function(request,response){
+    response.send('tier3 group '+request.params[0]+' '+request.params[1]+' '+request.params[2]);
+  });
+
+  //get group blog
+  kabam.app.get(/\/h\/([a-z0-9_]+)\/blog$/,function(request,response){
+    response.send('tier1 group blog '+request.params[0]);
+  });
+
+  kabam.app.get(/\/h\/([a-z0-9_]+)\/([a-z0-9_]+)\/blog$/,function(request,response){
+    response.send('tier2 group blog '+request.params[0]+' '+request.params[1]);
+  });
+
+  kabam.app.get(/\/h\/([a-z0-9_]+)\/([a-z0-9_]+)\/([a-z0-9_]+)\/blog$/,function(request,response){
+    response.send('tier3 group blog '+request.params[0]+' '+request.params[1]+' '+request.params[2]);
+  });
+
+  //get group members
+  kabam.app.get(/\/h\/([a-z0-9_]+)\/members$/,function(request,response){
+    response.send('tier1 group blog '+request.params[0]);
+  });
+
+  kabam.app.get(/\/h\/([a-z0-9_]+)\/([a-z0-9_]+)\/members$/,function(request,response){
+    response.send('tier2 group blog '+request.params[0]+' '+request.params[1]);
+  });
+
+  kabam.app.get(/\/h\/([a-z0-9_]+)\/([a-z0-9_]+)\/([a-z0-9_]+)\/members$/,function(request,response){
+    response.send('tier3 group blog '+request.params[0]+' '+request.params[1]+' '+request.params[2]);
+  });
+
+
+};

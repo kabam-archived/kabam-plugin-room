@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node example/example.js"
+    "start": "cd example/; node example.js"
   },
   "repository": {
     "type": "git",
@@ -13,19 +13,18 @@
   },
   "keywords": [
     "kabam",
-    "plugin.",
+    "plugin",
     "room",
-    "comments.",
+    "comments",
     "subsribe"
   ],
-  "dependencies":{
-    "async":"*",
-    "slugify2":"*"
+  "dependencies": {
+    "async": "*",
+    "slugify2": "*"
   },
-  "devDependencies":{
+  "devDependencies": {
     "kabam-kernel": "https://github.com/mykabam/kabam-kernel/tarball/master",
     "kabam-plugin-hogan": "https://github.com/mykabam/kabam-plugin-hogan/tarball/master",
-    "kabam-plugin-geoip": "https://github.com/mykabam/kabam-plugin-geoip/tarball/master",
     "kabam-plugin-welcome": "https://github.com/mykabam/kabam-plugin-welcome/tarball/master"
   },
   "author": "Anatolij Ostroumov",
