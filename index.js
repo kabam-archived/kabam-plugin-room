@@ -1,9 +1,9 @@
-var slugify = require('slugify'),
+var slugify = require('slugify2'),
   async = require('async');
 
 exports.name = "kabamPluginRoom";
 
-exports.extendModel({
+exports.extendModel={
 'groupBlogs': function(kabam){
   var GroupBlogsSchema = new kabam.mongoose.Schema({
     'groupId': kabam.mongoose.Schema.Types.ObjectId,
@@ -140,4 +140,4 @@ exports.extendModel({
 
   var Groups = kabam.mongoConnection.model('groups', GroupsSchema);
   return Groups;
-}});
+}};

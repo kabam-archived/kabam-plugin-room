@@ -1,0 +1,55 @@
+<div class="span4"></div>
+<div class="span8">
+    <h1>Please, complete your profile!</h1>
+    <p>Set your login and password.</p>
+    <p>Email: [[ myself.email ]]</p>
+    <form method="post" action="/auth/completeProfile">
+        <input type="hidden" name="_csrf" value="[[csrf]]"/>
+        <div class="control-group">
+            <label class="control-label" for="inputUsername">Username</label>
+            <div class="controls">
+                <input type="text" class="act" id="inputUsername" name="username" value="" pattern="^[a-zA-Z0-9_]{3,32}$" placeholder="myUserName"/>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label" for="inputPasswordLogin">Password</label>
+            <div class="controls">
+                <input type="password" name="password" id="inputPasswordLogin" placeholder="Password">
+            </div>
+        </div>
+
+        <div class="control-group">
+            <div class="controls">
+                <input type="submit" value="Save" class="btn btn-success"/>
+            </div>
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+    var u=$('#inputUsername').parent().parent();
+
+    $('.act').bind('change click keyup',function(){
+        $.post('/auth/isBusy',{
+            'username': $('#inputUsername').val(),
+            'email':$('#inputEmail').val(),
+            '_csrf': "[[csrf]]"
+        },function(data){
+            u.removeClass('error');
+            u.removeClass('warning');
+            u.removeClass('success');
+
+            if(data.username === 'OK'){
+                u.addClass('success');
+                u.attr('title','This is a good username!');
+            }
+            if(data.username === 'USERNAME_BUSY'){
+                u.addClass('warning');
+                u.attr('title','Username is busy, use another one!');
+            }
+            if(data.username === 'BAD_USERNAME'){
+                u.addClass('error');
+                u.attr('title','Username has bad value, use another one!');
+            }
+        },"json");
+    });
+</script>

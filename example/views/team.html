@@ -1,0 +1,38 @@
+<div class="span12" ng-controller='userList'>
+<p>Search: <input ng-model="query"></p>
+<table class="table table-striped table-bordered table-hover"  ng-controller='userList'>
+    <thead>
+        <tr>
+            <th>Username</th>
+            <th>Email</th>
+            <th>emailVerified</th>
+        </tr>
+    </thead>
+    <tbody>
+[[#users]]
+        <tr ng-hide="hidden">
+            <td>[[username]]</td>
+            <td>[[email]]</td>
+            <td>[[#emailVerified]]YES[[/emailVerified]][[^emailVerified]]NO[[/emailVerified]]</td>
+        </tr>
+[[/users]]
+<tr ng-repeat='user in users  | filter:query | orderBy:"username"' ng-show="hidden" style="display: none;">
+    <td>{{user.username}}</td>
+    <td>{{user.email}}</td>
+    <td>{{user.emailVerified}}</td>
+</tr>
+    </tbody>
+</table>
+</div>
+<script type="text/javascript">
+    function userList($scope,$http){
+        $scope.hidden=true;
+        $http.get('/team?json=true')
+                .success(function(data) {
+                    $scope.users=data;
+                })
+                .error(function(err){
+                    console.log(err);
+                });
+    }
+</script>

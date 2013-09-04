@@ -1,0 +1,29 @@
+<div class="span4"></div>
+<div class="span8">
+    <h1>Restore account</h1>
+    <p>Enter your email address.</p>
+    <form method="post" action="/auth/restoreAccount">
+        <input type="hidden" name="_csrf" value="[[csrf]]"/>
+
+        <div class="control-group">
+            <label class="control-label" for="inputEmail">Email</label>
+            <div class="controls">
+                <input class="act" type="text" name="email" id="inputEmail" placeholder="MyEmail@example.org">
+            </div>
+        </div>
+
+        <div class="control-group">
+            <img src="/auth/captcha.jpg" alt="" title="" class="img-polaroid"/>
+            <label class="control-label" for="inputCaptcha">Enter security code</label>
+            <div class="controls">
+                <input type="text" name="captcha" id="inputCaptcha" placeholder="">
+            </div>
+        </div>
+
+        <div class="control-group">
+            <div class="controls">
+                <input type="submit" value="Restore account" class="btn btn-success"/>
+            </div>
+        </div>
+    </form>
+</div>

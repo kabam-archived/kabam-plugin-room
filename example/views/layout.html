@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" ng-app>
+<head>
+    <meta charset="utf-8">
+    <title>[[title]]</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="[[description]]"/>
+    <meta name="keywords" content="[[keywords]]"/>
+    [[#doIndex]]
+    <meta name="robots" content="all"/>
+    [[/doIndex]]
+    [[^doIndex]]
+    <meta name="robots" content="none">
+    [[/doIndex]]
+    <style>
+        body {
+            padding-top: 60px;
+            height: 100%;
+        }
+    </style>
+    <link type="text/css" href="//yandex.st/bootstrap/2.3.2/css/bootstrap.min.css" rel="stylesheet"/>
+    <link type="text/css" href="//yandex.st/bootstrap/2.3.2/css/bootstrap-responsive.min.css" rel="stylesheet"/>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script async="async" type="text/javascript" src="//yandex.st/bootstrap/2.3.2/js/bootstrap.min.js"></script>
+    <link rel="shortcut icon" href="/favicon.ico">
+</head>
+<body>
+<nav class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <ul class="nav">
+                <li class="active brand">[[title]]</li>
+                <li class="divider-vertical"></li>
+[[#myself]]
+                <li>
+                    <a href="/auth/myProfile">[[username]]</a>
+                </li>
+                <li>
+                    <a href="/team">My team</a>
+                </li>
+                <li>
+                    <a href="javascript:logoff()">LogOut</a>
+                </li>
+[[/myself]]
+            </ul>
+        </div>
+    </div>
+</nav>
+[[#flash]]
+[[#error]]
+<div class="alert alert-error">
+    <a class="close" data-dismiss="alert">×</a>
+    <strong>[[error]]</strong>
+</div>
+[[/error]]
+[[#success]]
+<div class="alert alert-success">
+    <a class="close" data-dismiss="alert">×</a>
+    <strong>[[success]]</strong>
+</div>
+[[/success]]
+[[#info]]
+<div class="alert alert-info">
+    <a class="close" data-dismiss="alert">×</a>
+    <strong>[[info]]</strong>
+</div>
+[[/info]]
+[[/flash]]
+
+<div class="container">
+    <div class="row-fluid">
+        [[={{ }}=]]
+        {{{ yield }}}
+        {{=[[ ]]=}}
+    </div>
+    <div class="span12">
+        <p>&copy;<a href="https://github.com/mywebclass/mwc_plugin_welcome">https://github.com/mywebclass/mwc_plugin_welcome</a></p>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function logoff() {
+        $.post('/auth/logout', {'_csrf': "[[csrf]]" }, function (data) {
+            window.location.href = '/';
+        });
+    };
+    setTimeout(function () {
+        $('div.alert').hide('slow');
+    }, 2000);
+</script>
+</body>
+</html>
