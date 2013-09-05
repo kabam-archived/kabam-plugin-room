@@ -25,8 +25,8 @@ kabam.extendRoutes(function (kernel) {
           request.model.groups.create({
               'name': 'Test school ' + num,
               'uri': 'test_school_' + num,
-              'descriptionPublic': 'Description for public',
-              'descriptionForMembers': 'Description for members',
+              'descriptionPublic': 'Description for visitors of school '+num,
+              'descriptionForMembers': 'Description for members of school'+num,
               'tier': 1,
               'members': [
                 {
@@ -48,8 +48,8 @@ kabam.extendRoutes(function (kernel) {
           request.model.groups.create({
               'name': 'Test course ' + num,
               'uri': 'test_course_' + num,
-              'descriptionPublic': 'Description for public',
-              'descriptionForMembers': 'Description for members',
+              'descriptionPublic': 'Description for visitors of course ' + num,
+              'descriptionForMembers': 'Description for members of course ' + num,
               'school_id': school._id,
               'tier': 2,
               'members': [
@@ -73,8 +73,8 @@ kabam.extendRoutes(function (kernel) {
           request.model.groups.create({
               'name': 'Test group ' + num,
               'uri': 'test_group_' + num,
-              'descriptionPublic': 'Description for public',
-              'descriptionForMembers': 'Description for members',
+              'descriptionPublic': 'Description for visitors of course ' + num,
+              'descriptionForMembers': 'Description for members of course' + num,
               'school_id': school._id,
               'course_id': course._id,
               'tier': 3,

@@ -2,8 +2,8 @@
 <div class="span8">
 
     <h1>[[name]]</h1>
-    <p>Parent organization: <a href="../">[[parent.name]]</a></p>
-    <p>Children organizations: [[#children]] <a href="[[uri]]">[[name]]</a> [[/children]]</p>
+    <p>Parent organization: [[#parent]]<a href="[[parentUri]]">[[name]]</a>[[/parent]][[^parent]]not available[[/parent]]</p>
+    <p>Children organizations: [[#children]] <a href="[[childrenUri]]/[[uri]]">[[name]]</a> [[/children]][[^children]]not available[[/children]]</p>
     <hr>
     [[#homepage]]
     <p class="well">[[descriptionPublic]]</p>
