@@ -1,9 +1,28 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title></title>
-</head>
-<body>
+[[#group]]
+<div class="span8">
 
-</body>
-</html>
+    <h1>[[name]]</h1>
+    <p>Parent organization: <a href="../">[[parent.name]]</a></p>
+    <p>Children organizations: [[#children]] <a href="[[uri]]">[[name]]</a> [[/children]]</p>
+    <hr>
+    [[#homepage]]
+    <p class="well">[[descriptionPublic]]</p>
+    [[#descriptionForMembers]]
+    <p class="well">[[descriptionForMembers]]</p>
+    [[/descriptionForMembers]]
+    <p>In this group you are <b>[[#role]][[role]][[/role]][[^role]]visitor[[/role]]</b></p>
+    [[/homepage]]
+    <hr>
+
+
+    <h3>Recent comments</h3>
+
+</div>
+<div class="span4">
+    <h3>Members</h3>
+    [[#members]]
+        <img src="[[gravatar]]" alt="Gravatar of user [[username]]" title="Gravatar of user [[username]]" class="img-polaroid">
+    [[/members]]
+</div>
+
+[[/group]]
