@@ -11,11 +11,49 @@
     <hr>
     [[#homepage]]
     <p class="well">[[descriptionPublic]]</p>
-    [[#descriptionForMembers]]
-    <p class="well">[[descriptionForMembers]]</p>
-    [[/descriptionForMembers]]
-    <p>In this group you are <b>[[#role]][[role]][[/role]][[^role]]visitor[[/role]]</b></p>
+    [[#descriptionForMembers]]<p class="well">[[descriptionForMembers]]</p>[[/descriptionForMembers]]
+    <p>In this group you are <b>[[#role]][[role]][[/role]][[^role]]visitor[[/role]]</b>
+        [[#isAdmin]]
+        <button type="button" class="btn btn-small btn-warning" data-toggle="collapse" data-target="#groupParameters">
+            Edit
+        </button>
+        [[/isAdmin]]
+    </p>
     [[/homepage]]
+    [[#isAdmin]]
+    <div id="groupParameters" class="collapse">
+        <form class="form-horizontal" action="/api/groups/[[_id]]" method="post">
+            <input type="hidden" value="[[csrf]]" name="_csrf"/>
+            <input type="hidden" value="PUT" name="_method"/>
+
+            <div class="control-group">
+                <label class="control-label" for="descriptionPublic">Description for visitors</label>
+
+                <div class="controls">
+                    <textarea class="span10" name="descriptionPublic" id="descriptionPublic">[[homepage.descriptionPublic]]</textarea>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label" for="descriptionForMembers">Description for members only</label>
+
+                <div class="controls">
+                    <textarea class="span10" name="descriptionForMembers" id="descriptionForMembers">[[homepage.descriptionForMembers]]</textarea>
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="controls">
+                    <label class="checkbox">
+                        <input type="checkbox" [[#isOpenToAll]]checked[[/isOpenToAll]] > Group is open - everybody can
+                        join it
+                    </label>
+                    <input type="submit" class="btn btn-success" value="Save">
+                    <input type="reset" class="btn btn-warning">
+                </div>
+            </div>
+        </form>
+
+    </div>
+    [[/isAdmin]]
     <hr>
 
     <h3>Recent comments</h3>
@@ -35,41 +73,43 @@
     </div>
     [[/messages]]
     <hr/>
-    [[#homepage.isMember]]
+    [[#isMember]]
     <form class="form-inline" action="/api/groups/createMessage/[[_id]]" method="post">
         <input type="hidden" name="_csrf" value="[[csrf]]"/>
         <textarea name="message" rows="3" cols="60" class="span12" placeholder="Send comment to the group"></textarea>
         <input type="submit" value="Send comment" class="btn btn-success btn-large pull-right"/>
     </form>
-    [[/homepage.isMember]]
+    [[/isMember]]
 
-    [[^homepage.isMember]]
+    [[^isMember]]
     <form class="form-inline" action="/api/groups/join/[[_id]]" method="post">
         <input type="hidden" name="_csrf" value="[[csrf]]"/>
         <input type="submit" value="Join this group" class="btn btn-success btn-large pull-right"/>
     </form>
-    [[/homepage.isMember]]
+    [[/isMember]]
 
 
 </div>
 <div class="span4">
-    [[#homepage.isMember]]
+    [[#isMember]]
     <p>You are a member of this group</p>
 
     <form class="form-inline" action="/api/groups/leave/[[_id]]" method="post" id="formLeave">
         <input type="hidden" name="_csrf" value="[[csrf]]"/>
         <input type="submit" value="Leave this group" class="btn btn-danger"/>
     </form>
-    [[/homepage.isMember]]
+    [[/isMember]]
 
-    [[^homepage.isMember]]
+    [[^isMember]]
     <form class="form-inline" action="/api/groups/join/[[_id]]" method="post">
         <input type="hidden" name="_csrf" value="[[csrf]]"/>
         <input type="submit" value="Join this group" class="btn btn-success"/>
     </form>
-    [[/homepage.isMember]]
+    [[/isMember]]
     [[#isAdmin]]
     <hr>
+    <p>Being a admin, you can invite somebody to this group:</p>
+
     <form class="form-inline" action="/api/groups/invite/[[_id]]" method="post">
         <input type="hidden" name="_csrf" value="[[csrf]]"/>
         <input type="text" name="username" value="" placeholder="Enter username or email here">
