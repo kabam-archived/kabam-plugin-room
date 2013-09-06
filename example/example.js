@@ -17,6 +17,9 @@ kabam.usePlugin(require('kabam-plugin-welcome'));
 kabam.usePlugin(require('./../index.js'));
 
 kabam.extendRoutes(function (kernel) {
+  kernel.app.get('/',function(request,response){
+    response.redirect('/h');
+  });
   kernel.app.get('/h_init', function (request, response) {
     if (request.user) {
       async.waterfall([
