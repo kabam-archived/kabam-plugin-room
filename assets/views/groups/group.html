@@ -2,8 +2,12 @@
 <div class="span8">
 
     <h1>[[name]]</h1>
-    <p>Parent organization: [[#parent]]<a href="[[parentUri]]">[[name]]</a>[[/parent]][[^parent]]not available[[/parent]]</p>
-    <p>Children organizations: [[#children]] <a href="[[childrenUri]]/[[uri]]">[[name]]</a> [[/children]][[^children]]not available[[/children]]</p>
+
+    <p>Parent organization: [[#parent]]<a href="[[parentUri]]">[[name]]</a>[[/parent]][[^parent]]not
+        available[[/parent]]</p>
+
+    <p>Children organizations: [[#children]] <a href="[[childrenUri]]/[[uri]]">[[name]]</a>
+        [[/children]][[^children]]not available[[/children]]</p>
     <hr>
     [[#homepage]]
     <p class="well">[[descriptionPublic]]</p>
@@ -18,7 +22,9 @@
     [[#messages]]
     <div class="well well-small clearfix">
         <div class="span3">
-            <img src="[[user.gravatar]]" alt="Gravatar of user [[user.username]]" title="Gravatar of user [[user.username]]">
+            <img src="[[user.gravatar]]" alt="Gravatar of user [[user.username]]"
+                 title="Gravatar of user [[user.username]]">
+
             <p>[[user.username]]</p>
         </div>
         <div class="span9">
@@ -30,7 +36,7 @@
     [[/messages]]
     <hr/>
     [[#homepage.isMember]]
-    <form  class="form-inline" action="/api/groups/createMessage/[[_id]]" method="post">
+    <form class="form-inline" action="/api/groups/createMessage/[[_id]]" method="post">
         <input type="hidden" name="_csrf" value="[[csrf]]"/>
         <textarea name="message" rows="3" cols="60" class="span12" placeholder="Send comment to the group"></textarea>
         <input type="submit" value="Send comment" class="btn btn-success btn-large pull-right"/>
@@ -38,7 +44,7 @@
     [[/homepage.isMember]]
 
     [[^homepage.isMember]]
-    <form  class="form-inline" action="/api/groups/join/[[_id]]" method="post">
+    <form class="form-inline" action="/api/groups/join/[[_id]]" method="post">
         <input type="hidden" name="_csrf" value="[[csrf]]"/>
         <input type="submit" value="Join this group" class="btn btn-success btn-large pull-right"/>
     </form>
@@ -49,6 +55,7 @@
 <div class="span4">
     [[#homepage.isMember]]
     <p>You are a member of this group</p>
+
     <form class="form-inline" action="/api/groups/leave/[[_id]]" method="post" id="formLeave">
         <input type="hidden" name="_csrf" value="[[csrf]]"/>
         <input type="submit" value="Leave this group" class="btn btn-danger"/>
@@ -56,20 +63,29 @@
     [[/homepage.isMember]]
 
     [[^homepage.isMember]]
-    <form  class="form-inline" action="/api/groups/join/[[_id]]" method="post">
+    <form class="form-inline" action="/api/groups/join/[[_id]]" method="post">
         <input type="hidden" name="_csrf" value="[[csrf]]"/>
         <input type="submit" value="Join this group" class="btn btn-success"/>
     </form>
     [[/homepage.isMember]]
+    [[#isAdmin]]
+    <hr>
+    <form class="form-inline" action="/api/groups/invite/[[_id]]" method="post">
+        <input type="hidden" name="_csrf" value="[[csrf]]"/>
+        <input type="text" name="username" value="" placeholder="Enter username or email here">
+        <input type="submit" value="Invite" class="btn btn-success"/>
+    </form>
+    [[/isAdmin]]
     <hr>
 
     <h3>Members</h3>
     [[#members]]
-        <img src="[[gravatar]]" alt="Gravatar of user [[username]]" title="Gravatar of user [[username]]" class="img-polaroid">
+    <img src="[[gravatar]]" alt="Gravatar of user [[username]]" title="Gravatar of user [[username]]"
+         class="img-polaroid">
     [[/members]]
 </div>
 <script type="text/javascript">
-    $('#formLeave').submit(function(){
+    $('#formLeave').submit(function () {
         return window.confirm('Are you sure?');
     });
 </script>
