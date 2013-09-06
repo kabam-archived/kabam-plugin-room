@@ -47,12 +47,33 @@
 
 </div>
 <div class="span4">
+    [[#homepage.isMember]]
+    <p>You are a member of this group</p>
+    <form class="form-inline" action="/api/groups/leave/[[_id]]" method="post" id="formLeave">
+        <input type="hidden" name="_csrf" value="[[csrf]]"/>
+        <input type="submit" value="Leave this group" class="btn btn-danger"/>
+    </form>
+    [[/homepage.isMember]]
+
+    [[^homepage.isMember]]
+    <form  class="form-inline" action="/api/groups/join/[[_id]]" method="post">
+        <input type="hidden" name="_csrf" value="[[csrf]]"/>
+        <input type="submit" value="Join this group" class="btn btn-success"/>
+    </form>
+    [[/homepage.isMember]]
+    <hr>
+
     <h3>Members</h3>
     [[#members]]
         <img src="[[gravatar]]" alt="Gravatar of user [[username]]" title="Gravatar of user [[username]]" class="img-polaroid">
     [[/members]]
 </div>
+<script type="text/javascript">
+    $('#formLeave').submit(function(){
+        return window.confirm('Are you sure?');
+    });
 
+</script>
 
 [[/group]]
 
