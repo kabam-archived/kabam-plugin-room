@@ -1,5 +1,7 @@
 <div class="span4">
-    <img src="https://identicons.github.com/9c624c0e84bdfee75944e89e5709719b.png" alt="Place your logo here!" title="Place your logo here!"/>
+    <img src="https://identicons.github.com/9c624c0e84bdfee75944e89e5709719b.png" alt="Place your logo here!"
+         title="Place your logo here!"/>
+
     <h3>Place your logo here!</h3>
 </div>
 <div class="span4">
@@ -10,14 +12,17 @@
 
         <div class="control-group">
             <label class="control-label" for="inputUsername">Username</label>
+
             <div class="controls">
-                <input class="act" type="text" id="inputUsername" name="username" value="" pattern="^[a-zA-Z0-9_]{3,32}$" placeholder="myUserName"/>
+                <input class="act" type="text" id="inputUsername" name="username" value=""
+                       pattern="^[a-zA-Z0-9_]{3,32}$" placeholder="myUserName"/>
             </div>
         </div>
 
 
         <div class="control-group">
             <label class="control-label" for="inputEmail">Email</label>
+
             <div class="controls">
                 <input class="act" type="text" name="email" id="inputEmail" placeholder="MyEmail@example.org">
             </div>
@@ -25,6 +30,7 @@
 
         <div class="control-group">
             <label class="control-label" for="inputPassword">Password</label>
+
             <div class="controls">
                 <input type="password" name="password" id="inputPassword" placeholder="MyPa$$word">
             </div>
@@ -32,6 +38,7 @@
         <div class="control-group">
             <img src="/auth/captcha.jpg" alt="" title="" class="img-polaroid"/>
             <label class="control-label" for="inputCaptcha">Enter security code</label>
+
             <div class="controls">
                 <input type="text" name="captcha" id="inputCaptcha" placeholder="">
             </div>
@@ -43,21 +50,25 @@
             </div>
         </div>
     </form>
-    <h3><A href="/auth/google">Sign Up by Google</A> </h3>
+    <h3><A href="/auth/google">Sign Up by Google</A></h3>
 </div>
 <div class="span4">
     <h1>Already have an account?</h1>
 
     <form method="post" action="/auth/login">
         <input type="hidden" name="_csrf" value="[[csrf]]"/>
+
         <div class="control-group">
-            <label class="control-label" for="inputUsernameLogin">Username</label>
+            <label class="control-label" for="inputUsernameLogin">Username or email</label>
+
             <div class="controls">
-                <input type="text" id="inputUsernameLogin" name="username" value="" pattern="^[a-zA-Z0-9_]{3,32}$" placeholder="myUserName"/>
+                <input type="text" id="inputUsernameLogin" name="username" value="" pattern="^[a-zA-Z0-9_\.@]{3,32}$"
+                       placeholder="myUserName"/>
             </div>
         </div>
         <div class="control-group">
             <label class="control-label" for="inputPasswordLogin">Password</label>
+
             <div class="controls">
                 <input type="password" name="password" id="inputPasswordLogin" placeholder="Password">
             </div>
@@ -91,15 +102,15 @@
     [[/useFacebook]]
 </div>
 <script type="text/javascript">
-    var e=$('#inputEmail').parent().parent();
-    var u=$('#inputUsername').parent().parent();
+    var e = $('#inputEmail').parent().parent();
+    var u = $('#inputUsername').parent().parent();
 
-    $('.act').bind('change click keyup',function(){
-        $.post('/auth/isBusy',{
+    $('.act').bind('change click keyup', function () {
+        $.post('/auth/isBusy', {
             'username': $('#inputUsername').val(),
-            'email':$('#inputEmail').val(),
+            'email': $('#inputEmail').val(),
             '_csrf': "[[csrf]]"
-        },function(data){
+        }, function (data) {
             e.removeClass('error');
             e.removeClass('warning');
             e.removeClass('success');
@@ -108,38 +119,38 @@
             u.removeClass('warning');
             u.removeClass('success');
 
-            if(data.username === 'OK'){
+            if (data.username === 'OK') {
                 u.addClass('success');
-                u.attr('title','This is a good username!');
+                u.attr('title', 'This is a good username!');
             }
-            if(data.username === 'USERNAME_BUSY'){
+            if (data.username === 'USERNAME_BUSY') {
                 u.addClass('warning');
-                u.attr('title','Username is busy, use another one!');
+                u.attr('title', 'Username is busy, use another one!');
             }
-            if(data.username === 'BAD_USERNAME'){
+            if (data.username === 'BAD_USERNAME') {
                 u.addClass('error');
-                u.attr('title','Username has bad value, use another one!');
+                u.attr('title', 'Username has bad value, use another one!');
             }
 //            if(data.username === 'EMPTY_USERNAME'){
 //                u.addClass('error');
 //            }
 
-            if(data.email === 'OK'){
+            if (data.email === 'OK') {
                 e.addClass('success');
-                e.attr('title','This is a good email address!');
+                e.attr('title', 'This is a good email address!');
             }
-            if(data.email === 'EMAIL_BUSY'){
+            if (data.email === 'EMAIL_BUSY') {
                 e.addClass('warning');
-                e.attr('title','Email address is busy, use another one!');
+                e.attr('title', 'Email address is busy, use another one!');
             }
-            if(data.email === 'BAD_EMAIL'){
+            if (data.email === 'BAD_EMAIL') {
                 e.addClass('error');
-                e.attr('title','Email address has bad value, use another one!');
+                e.attr('title', 'Email address has bad value, use another one!');
             }
 //            if(data.email === 'EMPTY_EMAIL'){
 //                e.addClass('error');
 //            }
 
-        },"json");
+        }, "json");
     });
 </script>
