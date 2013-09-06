@@ -15,15 +15,36 @@
     <hr>
 
     <h3>Recent comments</h3>
-
+    [[#messages]]
+    <div class="well well-small clearfix">
+        <div class="span3">
+            <img src="[[user.gravatar]]" alt="Gravatar of user [[user.username]]" title="Gravatar of user [[user.username]]">
+            <p>[[user.username]]</p>
+        </div>
+        <div class="span9">
+            <p>[[createdAt]]</p>
+            <hr>
+            <p>[[message]]</p>
+        </div>
+    </div>
+    [[/messages]]
+    <hr/>
     [[#homepage.isMember]]
-    <form  class="form-inline" action="/api/groups/[[_id]]/comments" method="post">
+    <form  class="form-inline" action="/api/groups/createMessage/[[_id]]" method="post">
         <input type="hidden" name="_csrf" value="[[csrf]]"/>
-        <textarea rows="3" cols="60" class="span12" placeholder="Send comment to the group"></textarea>
+        <textarea name="message" rows="3" cols="60" class="span12" placeholder="Send comment to the group"></textarea>
         <input type="submit" value="Send comment" class="btn btn-success btn-large pull-right"/>
     </form>
-
     [[/homepage.isMember]]
+
+    [[^homepage.isMember]]
+    <form  class="form-inline" action="/api/groups/join/[[_id]]" method="post">
+        <input type="hidden" name="_csrf" value="[[csrf]]"/>
+        <input type="submit" value="Join this group" class="btn btn-success btn-large pull-right"/>
+    </form>
+    [[/homepage.isMember]]
+
+
 </div>
 <div class="span4">
     <h3>Members</h3>

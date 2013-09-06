@@ -20,7 +20,8 @@
   ],
   "dependencies": {
     "async": "*",
-    "slugify2": "*"
+    "slugify2": "*",
+    "validator": "*"
   },
   "devDependencies": {
     "kabam-kernel": "https://github.com/mykabam/kabam-kernel/tarball/master",
