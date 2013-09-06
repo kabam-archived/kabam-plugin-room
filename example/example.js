@@ -99,7 +99,7 @@ kabam.extendRoutes(function (kernel) {
             'course': course,
             'group': group
           });
-        },
+        }
       ], function (err, result) {
         response.json(result);
       });
