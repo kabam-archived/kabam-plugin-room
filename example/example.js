@@ -13,6 +13,7 @@ console.log(views);
 //basic frontend
 kabam.usePlugin(require('kabam-plugin-hogan'));
 kabam.usePlugin(require('kabam-plugin-welcome'));
+kabam.usePlugin(require('kabam-plugin-my-profile'));
 
 kabam.usePlugin(require('./../index.js'));
 
@@ -31,6 +32,7 @@ kabam.extendRoutes(function (kernel) {
               'descriptionPublic': 'Description for visitors of school '+num,
               'descriptionForMembers': 'Description for members of school'+num,
               'tier': 1,
+              'isOpenToAll': true,
               'members': [
                 {
                   '_id': request.user._id,
@@ -55,6 +57,7 @@ kabam.extendRoutes(function (kernel) {
               'descriptionForMembers': 'Description for members of course ' + num,
               'school_id': school._id,
               'tier': 2,
+              'isOpenToAll': true,
               'members': [
                 {
                   '_id': request.user._id,
@@ -81,6 +84,7 @@ kabam.extendRoutes(function (kernel) {
               'school_id': school._id,
               'course_id': course._id,
               'tier': 3,
+              'isOpenToAll': true,
               'members': [
                 {
                   '_id': request.user._id,
