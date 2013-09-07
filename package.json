@@ -27,7 +27,9 @@
     "kabam-kernel": "https://github.com/mykabam/kabam-kernel/tarball/master",
     "kabam-plugin-hogan": "https://github.com/mykabam/kabam-plugin-hogan/tarball/master",
     "kabam-plugin-welcome": "https://github.com/mykabam/kabam-plugin-welcome/tarball/master",
-    "kabam-plugin-my-profile": "https://github.com/mykabam/kabam-plugin-my-profile/tarball/master"
+    "kabam-plugin-my-profile": "https://github.com/mykabam/kabam-plugin-my-profile/tarball/master",
+    "kabam-plugin-logger-http-mongo": "https://github.com/mykabam/kabam-plugin-logger-http-mongo/tarball/master",
+    "kabam-plugin-logger-error-mongo": "https://github.com/mykabam/kabam-plugin-logger-error-mongo/tarball/master"
   },
   "author": "Anatolij Ostroumov",
   "license": "MIT",
