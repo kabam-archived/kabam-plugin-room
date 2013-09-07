@@ -4,7 +4,7 @@ var Kabam = require('kabam-kernel'),
   views = path.resolve(__dirname, './../', 'assets/views/');
 
 var kabam = Kabam({
-  'hostUrl': ((process.env.hostUrl)?(process.env.hostUrl):'http://vvv.msk0.ru/'),
+  'hostUrl': ((process.env.hostUrl) ? (process.env.hostUrl) : 'http://vvv.msk0.ru/'),
   'views': views
 });
 
@@ -12,11 +12,13 @@ var kabam = Kabam({
 kabam.usePlugin(require('kabam-plugin-hogan'));
 kabam.usePlugin(require('kabam-plugin-welcome'));
 kabam.usePlugin(require('kabam-plugin-my-profile'));
+kabam.usePlugin(require('kabam-plugin-logger-http-mongo'));
+kabam.usePlugin(require('kabam-plugin-logger-error-mongo'));
 
 kabam.usePlugin(require('./../index.js'));
 
 kabam.extendRoutes(function (kernel) {
-  kernel.app.get('/',function(request,response){
+  kernel.app.get('/', function (request, response) {
     response.redirect('/h');
   });
   kernel.app.get('/h_init', function (request, response) {
@@ -27,8 +29,8 @@ kabam.extendRoutes(function (kernel) {
           request.model.groups.create({
               'name': 'Test school ' + num,
               'uri': 'test_school_' + num,
-              'descriptionPublic': 'Description for visitors of school '+num,
-              'descriptionForMembers': 'Description for members of school'+num,
+              'descriptionPublic': 'Description for visitors of school ' + num,
+              'descriptionForMembers': 'Description for members of school' + num,
               'tier': 1,
               'isOpenToAll': true,
               'members': [

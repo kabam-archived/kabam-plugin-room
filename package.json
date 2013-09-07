@@ -3,6 +3,10 @@
   "version": "0.0.1",
   "description": "Kabam plugin for chat/discussions room",
   "main": "index.js",
+  "engines": {
+    "node": "0.10.x",
+    "npm": "1.3.x"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "cd example/; node example.js"
@@ -21,9 +25,7 @@
   "dependencies": {
     "async": "*",
     "slugify2": "*",
-    "validator": "*"
-  },
-  "devDependencies": {
+    "validator": "*",
     "kabam-kernel": "https://github.com/mykabam/kabam-kernel/tarball/master",
     "kabam-plugin-hogan": "https://github.com/mykabam/kabam-plugin-hogan/tarball/master",
     "kabam-plugin-welcome": "https://github.com/mykabam/kabam-plugin-welcome/tarball/master",
