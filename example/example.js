@@ -4,11 +4,9 @@ var Kabam = require('kabam-kernel'),
   views = path.resolve(__dirname, './../', 'assets/views/');
 
 var kabam = Kabam({
-  'hostUrl': 'http://vvv.msk0.ru/',
+  'hostUrl': ((process.env.hostUrl)?(process.env.hostUrl):'http://vvv.msk0.ru/'),
   'views': views
 });
-
-console.log(views);
 
 //basic frontend
 kabam.usePlugin(require('kabam-plugin-hogan'));
@@ -116,4 +114,3 @@ kabam.extendRoutes(function (kernel) {
   });
 });
 kabam.start();
-console.log(kabam.app.get('views'));
