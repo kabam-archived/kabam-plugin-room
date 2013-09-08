@@ -35,11 +35,7 @@ kabam.extendRoutes(function (kernel) {
               'isOpenToAll': true,
               'members': [
                 {
-                  '_id': request.user._id,
-                  'username': request.user.username,
-                  'gravatar': request.user.gravatar,
-                  'firstName': request.user.firstName,
-                  'lastName': request.user.lastName,
+                  'user': request.user._id,
                   'role': 'admin'
                 }
               ]
@@ -60,11 +56,7 @@ kabam.extendRoutes(function (kernel) {
               'isOpenToAll': true,
               'members': [
                 {
-                  '_id': request.user._id,
-                  'username': request.user.username,
-                  'gravatar': request.user.gravatar,
-                  'firstName': request.user.firstName,
-                  'lastName': request.user.lastName,
+                  'user': request.user._id,
                   'role': 'admin'
                 }
               ]
@@ -87,11 +79,7 @@ kabam.extendRoutes(function (kernel) {
               'isOpenToAll': true,
               'members': [
                 {
-                  '_id': request.user._id,
-                  'username': request.user.username,
-                  'gravatar': request.user.gravatar,
-                  'firstName': request.user.firstName,
-                  'lastName': request.user.lastName,
+                  'user': request.user._id,
                   'role': 'admin'
                 }
               ]
