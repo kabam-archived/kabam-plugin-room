@@ -1,6 +1,6 @@
 {
   "name": "kabam-plugin-room",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Kabam plugin for chat/discussions room",
   "main": "index.js",
   "engines": {
