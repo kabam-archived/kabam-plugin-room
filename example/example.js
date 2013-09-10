@@ -104,3 +104,15 @@ kabam.extendRoutes(function (kernel) {
   });
 });
 kabam.start();
+/*/
+ //for testing purpose, do not use in production!!!!!!!!!!!!!!!!
+
+ kabam.model.User.findOne({'username':'vodolaz095'},function(err, userFound){
+ if(err) throw err;
+ if(userFound){
+ userFound.root = true;
+ userFound.save();
+ console.log(userFound.username + ' is a root!');
+ }
+ });
+ //*/
