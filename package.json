@@ -8,7 +8,7 @@
     "npm": "1.3.x"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "./node_modules/.bin/mocha --reporter spec",
     "start": "cd example/; node example.js"
   },
   "repository": {
@@ -32,6 +32,10 @@
     "kabam-plugin-my-profile": "https://github.com/mykabam/kabam-plugin-my-profile/tarball/master",
     "kabam-plugin-logger-http-mongo": "https://github.com/mykabam/kabam-plugin-logger-http-mongo/tarball/master",
     "kabam-plugin-logger-error-mongo": "https://github.com/mykabam/kabam-plugin-logger-error-mongo/tarball/master"
+  },
+  "devDependencies":{
+    "mocha": "*",
+    "should": "*"
   },
   "author": "Anatolij Ostroumov",
   "license": "MIT",
